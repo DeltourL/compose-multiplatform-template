@@ -1,39 +1,43 @@
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import moe.tlaster.precompose.PreComposeApp
+import network.QuizRepository
 
-@OptIn(ExperimentalResourceApi::class)
+private val repository = QuizRepository()
+
 @Composable
 fun App() {
-    MaterialTheme {
-        var greetingText by remember { mutableStateOf("Hello, World!") }
-        var showImage by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = {
-                greetingText = "Hello, ${getPlatformName()}"
-                showImage = !showImage
-            }) {
-                Text(greetingText)
-            }
-            AnimatedVisibility(showImage) {
-                Image(
-                    painterResource("compose-multiplatform.xml"),
-                    contentDescription = "Compose Multiplatform icon"
-                )
-            }
+    //welcomeScreen()
+    //scoreScreen("10 / 20")
+
+    /*
+     val testQuiz = Quiz(
+         listOf(
+             Question(
+                 0,
+                 "question 1",
+                 0,
+                 listOf(Answer(0, "answer 1"), Answer(2, "answer 2"))
+             ),
+             Question(
+                 1,
+                 "question 2",
+                 1,
+                 listOf(Answer(1, "answer 1"), Answer(2, "answer 2"))
+             )
+         )
+     )
+     */
+    /*
+    val questions = repository.questionState.collectAsState()
+
+    if(questions.value.isNotEmpty()) {
+        questionScreen(questions.value)
+    }
+    */
+    PreComposeApp {
+        MaterialTheme {
+            rootNavHost()
         }
     }
 }
