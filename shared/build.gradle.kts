@@ -97,3 +97,14 @@ android {
         jvmToolchain(17)
     }
 }
+
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.myapplication.common.cache")
+            listOf("sqldelight")
+            generateAsync.set(true)
+        }
+    }
+}

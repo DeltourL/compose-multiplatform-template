@@ -1,12 +1,13 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import app.cash.sqldelight.db.SqlDriver
+import com.myapplication.common.cache.Database
 import moe.tlaster.precompose.PreComposeApp
 import network.QuizRepository
 
-private val repository = QuizRepository()
 
 @Composable
-fun App() {
+fun App(driver: SqlDriver) {
     //welcomeScreen()
     //scoreScreen("10 / 20")
 
@@ -37,9 +38,13 @@ fun App() {
     */
     PreComposeApp {
         MaterialTheme {
-            rootNavHost()
+            rootNavHost(driver)
         }
     }
 }
 
 expect fun getPlatformName(): String
+
+expect class DatabaseDriverFactory {
+    fun createDriver(): SqlDriver
+}

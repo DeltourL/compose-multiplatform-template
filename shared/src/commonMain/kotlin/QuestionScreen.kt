@@ -26,7 +26,7 @@ import network.data.Question
 @Composable
 internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
     var questionProgress by remember { mutableStateOf(0) }
-    var selectedAnswer by remember { mutableStateOf(-1) }
+    var selectedAnswer by remember { mutableStateOf(-1L) }
     var score by remember { mutableStateOf(0) }
 
     Column(
@@ -67,8 +67,8 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 if (selectedAnswer == questions[questionProgress].correctAnswerId) {
                     score++
                 }
-                if (selectedAnswer != -1) {
-                    selectedAnswer = -1
+                if (selectedAnswer != -1L) {
+                    selectedAnswer = -1L
 
                     if (questions.size - 1 > questionProgress) {
                         questionProgress++

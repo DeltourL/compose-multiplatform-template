@@ -2,6 +2,6 @@ package network.data
 
 @kotlinx.serialization.Serializable
 data class Answer(
-    val id: Int,
+    val id: Long,
     val label: String
 ) {}

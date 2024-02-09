@@ -1,15 +1,17 @@
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import app.cash.sqldelight.db.SqlDriver
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import network.QuizRepository
 
-private val quizRepository = QuizRepository()
 
 @Composable
-internal fun rootNavHost() {
+internal fun rootNavHost(driver: SqlDriver) {
+    val quizRepository = QuizRepository(driver)
 
     val navigator = rememberNavigator()
     NavHost(
@@ -27,7 +29,6 @@ internal fun rootNavHost() {
             route = "/quiz",
             navTransition = NavTransition(),
         ) {
-
             val questions = quizRepository.questionState.collectAsState()
 
             if (questions.value.isNotEmpty()) {
